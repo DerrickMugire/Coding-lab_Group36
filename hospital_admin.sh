@@ -25,6 +25,7 @@ initialize_system() {
         echo "reports already exists."
     fi
 }
+# Protect active logs so only the owner can read and write.
 
 secure_data() {
 
