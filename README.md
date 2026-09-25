@@ -7,6 +7,9 @@
 - **Member 1:** `initialize_system()`
 - **Member 2:** `secure_data()`
 - **Member 3:** Execution logic
+- **Member 4:** `archive_logs()` — rotates active logs into `archived_logs/` with a timestamp and recreates fresh log files for continuity
+- **Member 5:** `process_vitals()` — extracts every CRITICAL heart rate/temperature reading into `reports/critical_alerts.txt`
+- **Member 6:** `water_audit()` — calculates and prints the average usage for `ICU_WATER_RESERVE`
 
 ### Files
 
@@ -18,6 +21,18 @@
 ### Run
 
 ```bash
-chmod +x hospital_admin.sh
+chmod +x hospital_admin.sh hospital_analysis.sh hospital_archive.sh
+
+# 1. Set up directories and permissions
 ./hospital_admin.sh
+
+# 2. Start the simulator to generate live data
+python3 hospital_system.py start
+
+# 3. Run analysis on live data (before archiving)
+./hospital_analysis.sh
+
+# 4. Stop the simulator, then archive the logs
+python3 hospital_system.py stop
+./hospital_archive.sh
 ```
