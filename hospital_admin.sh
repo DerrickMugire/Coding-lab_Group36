@@ -36,10 +36,10 @@ secure_data() {
     echo "Updated permissions:"
     ls -ld active_logs
 }
-
+# Execute setup functions in order.
 initialize_system
 secure_data
 
 echo ""
 echo "System Environment Secured"
-date
+idate
