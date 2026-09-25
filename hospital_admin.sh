@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# ==========================================================
+# Member 1 - System Architect
+# Creates required hospital directories
+# ==========================================================
+
 initialize_system() {
 
     echo "Checking system directories..."
@@ -25,21 +30,35 @@ initialize_system() {
         echo "reports already exists."
     fi
 }
-# Protect active logs so only the owner can read and write.
+
+
+# ==========================================================
+# Member 2 - Security Lead
+# Protects sensitive medical logs
+# ==========================================================
 
 secure_data() {
 
-    echo "Securing active_logs..."
+    echo "Securing active_logs directory..."
 
-    chmod 600 active_logs
+    # Owner has read, write and execute permission.
+    # Group and others have no access.
+    chmod 700 active_logs
 
-    echo "Updated permissions:"
+    echo "Updated active_logs permissions:"
     ls -ld active_logs
 }
-# Execute setup functions in order.
+
+
+# ==========================================================
+# Member 3 - Orchestrator
+# Executes the functions in the correct order
+# ==========================================================
+
 initialize_system
+
 secure_data
 
 echo ""
 echo "System Environment Secured"
-idate
+echo "Date: $(date)"
